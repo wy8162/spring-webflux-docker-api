@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: webfluxapi
+  name: webfluxapi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: webfluxapi
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: webfluxapi
+    spec:
+      containers:
+      - image: spring-webflux-docker-api:1.0.1
+        name: spring-webflux-docker-api
+        resources: {}
+status: {}

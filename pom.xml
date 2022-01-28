@@ -11,17 +11,13 @@
   </parent>
   <groupId>y.w.api</groupId>
   <artifactId>spring-webflux-docker-api</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1</version>
   <name>spring-webflux-docker-api</name>
   <description>spring-webflux-docker-api</description>
   <properties>
     <java.version>11</java.version>
   </properties>
   <dependencies>
-    <!--    <dependency>-->
-    <!--      <groupId>org.springframework.boot</groupId>-->
-    <!--      <artifactId>spring-boot-starter-hateoas</artifactId>-->
-    <!--    </dependency>-->
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-webflux</artifactId>

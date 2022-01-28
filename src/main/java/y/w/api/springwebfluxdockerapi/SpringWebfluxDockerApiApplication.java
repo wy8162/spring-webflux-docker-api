@@ -83,9 +83,13 @@ class GreetingService {
 
     @Data
     @NoArgsConstructor // Default constructor is needed for Jackson
-    @AllArgsConstructor
     static class GreetingResponse {
+        private String version = "v1.0.0";
         private String message;
+
+        public GreetingResponse(String message) {
+            this.message = message;
+        }
     }
 
     @Data
