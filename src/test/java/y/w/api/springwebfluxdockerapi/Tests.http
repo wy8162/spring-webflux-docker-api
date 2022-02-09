@@ -7,4 +7,24 @@ GET http://localhost:8080/hello
 GET http://localhost:8080/hello/Jack
 
 ###
+GET http://localhost:8080/books/init
+
+###
 GET http://localhost:8080/books
+
+###
+GET http://localhost:8080/some/pathvariable1234/others?id=wy8162
+
+###
+GET http://localhost:8080/api/relationship
+
+###
+GET http://localhost:8080/api/permission
+
+###
+GET http://localhost:8080/api/account
+
+###
+# /api/{profileId}
+# profileId = 1,2,3,...
+GET http://localhost:8080/api/ca/2

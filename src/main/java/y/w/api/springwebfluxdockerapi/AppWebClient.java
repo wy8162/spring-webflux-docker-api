@@ -4,7 +4,7 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
-import y.w.api.springwebfluxdockerapi.pojo.GreetingResponse;
+import y.w.api.springwebfluxdockerapi.pojo.ApiResponse;
 
 @Component
 public class AppWebClient {
@@ -20,7 +20,7 @@ public class AppWebClient {
             .uri("/hello")
             .accept(MediaType.APPLICATION_JSON)
             .retrieve()
-            .bodyToMono(GreetingResponse.class)
-            .map(GreetingResponse::getMessage);
+            .bodyToMono(ApiResponse.class)
+            .map(ApiResponse::getMessage);
     }
 }

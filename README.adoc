@@ -29,16 +29,26 @@ docker run -e "SPRING_PROFILES_ACTIVE=prod" -p 8080:8080 spring-webflux-docker-a
 docker run -e "JAVA_TOOL_OPTIONS=-agentlib:jdwp=transport=dt_socket,address=5005,server=y,suspend=n" -p 8080:8080 -p 5005:5005 spring-webflux-docker-api:1.0.0
 
 == Set up Docker Containers to Run the Application
+The simplest way to start both Postgres and Mongodb:
+
+```
+$ cd coontainer
+$ docker-compose up
+```
+
 . Create a Docker network
   docker network create webflux_net
 . Start Mongodb
+```
   docker run \
   -p27017:27017 \
   --name=mongoserver \
   --rm \
   --network=webflux_net mongo
+```
 . Run the application
 .. Either run it in local host directly because the application connects to localhost:27017.
+```
 .. Run it in container
   docker run \
   --name webfluxapi \
@@ -46,6 +56,6 @@ docker run -e "JAVA_TOOL_OPTIONS=-agentlib:jdwp=transport=dt_socket,address=5005
   -p8080:8080 \
   -e MONGO_URL=mongodb://mongoserver:27017/dev \
   spring-webflux-docker-api:1.0.1
-
+```
 here, --rm means automatic cleaning up the container and remove the file system after the conteiner exits.
 

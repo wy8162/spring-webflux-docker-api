@@ -5,6 +5,6 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class GreetingRequest {
+public class ApiRequest {
     private final String name;
 }

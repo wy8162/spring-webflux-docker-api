@@ -19,26 +19,31 @@ public class SampleDataInitializer {
     public void ready() {
         log.info("Initializing the data ...");
 
-        initializeSampleData();
+        initializeSampleData(0);
     }
 
     /**
      * Learned from Josh Long.
      */
-    public void initializeSampleData() {
+    public void initializeSampleData(int seq) {
+        String postfix = (seq == 0 ? "" : " " + seq);
+
         Flux<Book> books = Flux.just(
-                "Spring in Action",
-                "Spring Boot in Action",
-                "Java 8 for Impatient",
-                "Kotlin in Action"
+                "Spring in Action" + postfix,
+                "Spring Boot in Action" + postfix,
+                "Java 8 for Impatient" + postfix,
+                "Kotlin in Action" + postfix
             )
             .map(name -> new Book(null, name))
             .flatMap(this.bookRepository::save);
 
-        this.bookRepository
-                .deleteAll()
-                    .thenMany(books)
-                        .thenMany(this.bookRepository.findAll())
-                            .subscribe(b -> log.info(b.toString()));
+        if (seq == 0)
+            this.bookRepository
+                    .deleteAll()
+                        .thenMany(books)
+                            .thenMany(this.bookRepository.findAll())
+                                .subscribe(b -> log.info(b.toString()));
+        else
+            books.subscribe(b -> log.info(b.toString()));
     }
 }

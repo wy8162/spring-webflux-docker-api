@@ -1,0 +1,54 @@
+# Deployment Definition
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: webfluxapi
+  name: webfluxapi
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: webfluxapi
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: webfluxapi
+    spec:
+      containers:
+      - image: spring-webflux-docker-api:1.0.1
+        name: webflux-docker-api
+        resources: {}
+        env:
+          - name: MONGO_URL
+            value: mongodb://mongoserver:27017/dev
+status: {}
+
+---
+# Service Definitions.
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: webfluxapi
+  name: webfluxapi
+spec:
+  ports:
+    - name: 8080-8080
+      port: 8080
+      protocol: TCP
+      targetPort: 8080
+  selector:
+    app: webfluxapi
+  type: ClusterIP
+status:
+  loadBalancer: {}
+

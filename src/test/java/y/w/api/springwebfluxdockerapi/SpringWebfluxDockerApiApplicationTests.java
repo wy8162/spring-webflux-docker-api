@@ -10,7 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.reactive.server.WebTestClient;
-import y.w.api.springwebfluxdockerapi.pojo.GreetingResponse;
+import y.w.api.springwebfluxdockerapi.pojo.ApiResponse;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
@@ -25,7 +25,7 @@ class SpringWebfluxDockerApiApplicationTests {
             .accept(MediaType.APPLICATION_JSON)
             .exchange()
             .expectStatus().isOk()
-            .expectBody(GreetingResponse.class).value( greeting -> {
+            .expectBody(ApiResponse.class).value( greeting -> {
                 assertThat(greeting.getMessage().endsWith("world"));
             });
 
