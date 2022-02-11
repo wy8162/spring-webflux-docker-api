@@ -11,13 +11,13 @@ import y.w.api.springwebfluxdockerapi.SampleDataInitializer;
 import y.w.api.springwebfluxdockerapi.pojo.ApiRequest;
 import y.w.api.springwebfluxdockerapi.pojo.ApiResponse;
 import y.w.api.springwebfluxdockerapi.pojo.BookResponse;
-import y.w.api.springwebfluxdockerapi.repository.BookRepository;
+import y.w.api.springwebfluxdockerapi.repository.BookMongoRepository;
 
 @RequiredArgsConstructor
 @Component
 public class ServiceHandler {
     private final GreetingService service;
-    private final BookRepository bookRepository;
+    private final BookMongoRepository bookRepository;
     private final SampleDataInitializer sampleDataInitializer;
 
     public Mono<ServerResponse> helloHandler(ServerRequest request) {

@@ -1,3 +1,4 @@
+###
 GET http://localhost:8080/
 
 ###
@@ -28,3 +29,9 @@ GET http://localhost:8080/api/account
 # /api/{profileId}
 # profileId = 1,2,3,...
 GET http://localhost:8080/api/ca/4
+
+
+###
+# Stock Quote Streaming
+GET http://localhost:8080/quotes
+Accept: application/x-ndjson

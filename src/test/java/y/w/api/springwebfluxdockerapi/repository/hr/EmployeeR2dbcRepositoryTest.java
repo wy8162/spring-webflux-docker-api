@@ -12,14 +12,18 @@ import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
 import y.w.api.springwebfluxdockerapi.model.hr.Employee;
 
+/**
+ * Test R2DBC Repository.
+ */
+
 @ExtendWith(SpringExtension.class)
 @DataR2dbcTest
-class EmployeeRepositoryTest {
+class EmployeeR2dbcRepositoryTest {
     @Autowired
     private DatabaseClient databaseClient;
 
     @Autowired
-    private EmployeeRepository employeeRepository;
+    private EmployeeR2dbcRepository employeeRepository;
 
     @Test
     public void testFindByEmployeeId() {

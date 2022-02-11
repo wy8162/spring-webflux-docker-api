@@ -7,13 +7,13 @@ import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Flux;
 import y.w.api.springwebfluxdockerapi.model.Book;
-import y.w.api.springwebfluxdockerapi.repository.BookRepository;
+import y.w.api.springwebfluxdockerapi.repository.BookMongoRepository;
 
 @Slf4j
 @Component
 @RequiredArgsConstructor
 public class SampleDataInitializer {
-    private final BookRepository bookRepository;
+    private final BookMongoRepository bookRepository;
 
     @EventListener(ApplicationReadyEvent.class)
     public void ready() {
