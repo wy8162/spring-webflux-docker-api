@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.server.ServerRequest;
@@ -43,13 +44,17 @@ public class CustomerAccountHandler {
                 s -> customerAccountService.getAccountsByAccountNumbers(new ArrayList<>(s))
                     .collectList().map(list -> new CustomerAccountResponse(list)));
 
-        return ServerResponse.ok().body(
+        return ServerResponse
+            .ok()
+            .contentType(MediaType.APPLICATION_JSON)
+            .body(
             BodyInserters.fromPublisher(customerAccountResponse, CustomerAccountResponse.class));
     }
 
     public Mono<ServerResponse> getAllCustomerRelationships(ServerRequest request) {
         return ServerResponse
             .ok()
+            .contentType(MediaType.APPLICATION_JSON)
             .body(BodyInserters.fromPublisher(customerAccountService.getAllCustomerRelationships(),
                 CustomerRelationship.class));
     }
@@ -57,6 +62,7 @@ public class CustomerAccountHandler {
     public Mono<ServerResponse> getAllPermissions(ServerRequest request) {
         return ServerResponse
             .ok()
+            .contentType(MediaType.APPLICATION_JSON)
             .body(BodyInserters.fromPublisher(customerAccountService.getAllPermissions(),
                 CustomerPermission.class));
     }
@@ -64,6 +70,7 @@ public class CustomerAccountHandler {
     public Mono<ServerResponse> getAllAccounts(ServerRequest request) {
         return ServerResponse
             .ok()
+            .contentType(MediaType.APPLICATION_JSON)
             .body(BodyInserters.fromPublisher(customerAccountService.getAllCustomerAccounts(),
                 CustomerAccount.class));
     }

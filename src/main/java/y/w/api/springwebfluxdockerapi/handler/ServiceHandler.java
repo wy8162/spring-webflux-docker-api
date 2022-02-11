@@ -1,6 +1,7 @@
 package y.w.api.springwebfluxdockerapi.handler;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.server.ServerRequest;
@@ -23,7 +24,9 @@ public class ServiceHandler {
     public Mono<ServerResponse> helloHandler(ServerRequest request) {
         Mono<ApiResponse> gr = service.hello(new ApiRequest("World"));
 
-        return ServerResponse.ok()
+        return ServerResponse
+            .ok()
+            .contentType(MediaType.APPLICATION_JSON)
             .body(
                 BodyInserters.fromPublisher(gr, ApiResponse.class)
             );
@@ -35,7 +38,10 @@ public class ServiceHandler {
             .collectList()
             .map(list -> new BookResponse(list));
 
-        return ServerResponse.ok().body(BodyInserters.fromPublisher(responseMono, BookResponse.class));
+        return ServerResponse
+            .ok()
+            .contentType(MediaType.APPLICATION_JSON)
+            .body(BodyInserters.fromPublisher(responseMono, BookResponse.class));
     }
 
     public Mono<ServerResponse> initBooks(ServerRequest request) {
@@ -51,6 +57,7 @@ public class ServiceHandler {
 
         return ServerResponse
             .ok()
+            .contentType(MediaType.TEXT_PLAIN)
             .body(BodyInserters.fromPublisher(stringMono, String.class));
     }
 }
