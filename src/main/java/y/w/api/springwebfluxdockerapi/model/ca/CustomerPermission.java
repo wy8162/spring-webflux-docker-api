@@ -1,4 +1,4 @@
-package y.w.api.springwebfluxdockerapi.model;
+package y.w.api.springwebfluxdockerapi.model.ca;
 
 import java.util.List;
 import lombok.AllArgsConstructor;

@@ -10,11 +10,11 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
-import y.w.api.springwebfluxdockerapi.model.CustomerAccount;
-import y.w.api.springwebfluxdockerapi.model.CustomerAccount.AccountType;
-import y.w.api.springwebfluxdockerapi.model.CustomerPermission;
-import y.w.api.springwebfluxdockerapi.model.CustomerRelationship;
-import y.w.api.springwebfluxdockerapi.model.CustomerRelationship.Relationship;
+import y.w.api.springwebfluxdockerapi.model.ca.CustomerAccount;
+import y.w.api.springwebfluxdockerapi.model.ca.CustomerAccount.AccountType;
+import y.w.api.springwebfluxdockerapi.model.ca.CustomerPermission;
+import y.w.api.springwebfluxdockerapi.model.ca.CustomerRelationship;
+import y.w.api.springwebfluxdockerapi.model.ca.CustomerRelationship.Relationship;
 
 @Service
 public class CustomerAccountService {

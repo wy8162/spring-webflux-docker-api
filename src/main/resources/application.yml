@@ -20,7 +20,7 @@ spring:
   profiles:
     include: dev
   r2dbc:
-    url: r2dbc:postgresql://petclinic:petclinic@localhost:5432/petclinic
+    url: r2dbc:postgresql://postgres:postgres@localhost:5432/postgres
     initialization-mode: alawys
   sql:
     init:
