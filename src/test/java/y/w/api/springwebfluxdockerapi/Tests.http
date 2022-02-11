@@ -29,7 +29,7 @@ Accept: application/json
 ###
 # /api/{profileId}
 # profileId = 1,2,3,...
-GET http://localhost:8080/api/ca/4
+GET http://localhost:8080/api/ca/1
 Accept: application/json
 
 ###
