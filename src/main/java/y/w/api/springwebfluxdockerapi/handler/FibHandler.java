@@ -18,6 +18,6 @@ public class FibHandler {
         return ServerResponse
             .ok()
             .contentType(MediaType.TEXT_EVENT_STREAM)
-            .body(fibonacciService.getFibonacci().delaySequence(Duration.ofSeconds(2)), Integer.class);
+            .body(fibonacciService.getFibonacci().delayElements(Duration.ofSeconds(1)), Integer.class);
     }
 }
