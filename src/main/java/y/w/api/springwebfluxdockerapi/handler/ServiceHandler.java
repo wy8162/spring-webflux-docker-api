@@ -41,7 +41,7 @@ public class ServiceHandler {
         return ServerResponse
             .ok()
             .contentType(MediaType.APPLICATION_JSON)
-            .body(BodyInserters.fromPublisher(responseMono, BookResponse.class));
+            .body(responseMono, BookResponse.class);
     }
 
     public Mono<ServerResponse> initBooks(ServerRequest request) {

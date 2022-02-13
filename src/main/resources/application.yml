@@ -7,17 +7,18 @@ logging:
     org:
       springframework=INFO: INFO
 
+
+# Profile "dev"
+reactor:
+  netty:
+    pool:
+      maxConnections: 500
+
 spring:
   main:
     banner-mode: console
   profiles:
     active: dev
-
----
-# Profile "dev"
-
-spring:
-  profiles:
     include: dev
   r2dbc:
     url: r2dbc:postgresql://postgres:postgres@localhost:5432/postgres
@@ -29,6 +30,9 @@ spring:
   data:
     mongodb:
       uri: mongodb://localhost:27017/dev
+  jackson:
+    default-property-inclusion: non_null
+
 server:
   port: 8080
 # The following is to enable SSL for the server

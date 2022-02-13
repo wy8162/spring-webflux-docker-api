@@ -28,7 +28,7 @@ public class CustomerAccountHandler {
 
         if (profileId == null) {
             return ServerResponse.status(HttpStatus.BAD_REQUEST)
-                .body(BodyInserters.fromValue(new ErrorMessage("BAD REQUEST")));
+                .bodyValue(new ErrorMessage("BAD REQUEST"));
         }
 
         var customerAccountResponse = customerAccountService.getRelationshipByProfileId(profileId)
@@ -63,15 +63,14 @@ public class CustomerAccountHandler {
         return ServerResponse
             .ok()
             .contentType(MediaType.APPLICATION_JSON)
-            .body(BodyInserters.fromPublisher(customerAccountService.getAllPermissions(),
-                CustomerPermission.class));
+            .body(customerAccountService.getAllPermissions(), CustomerPermission.class);
     }
 
     public Mono<ServerResponse> getAllAccounts(ServerRequest request) {
         return ServerResponse
             .ok()
             .contentType(MediaType.APPLICATION_JSON)
-            .body(BodyInserters.fromPublisher(customerAccountService.getAllCustomerAccounts(),
-                CustomerAccount.class));
+            .body(customerAccountService.getAllCustomerAccounts(), CustomerAccount.class);
+            //.body(BodyInserters.fromPublisher(customerAccountService.getAllCustomerAccounts(),CustomerAccount.class));
     }
 }

@@ -36,3 +36,16 @@ Accept: application/json
 # Stock Quote Streaming
 GET http://localhost:8080/quotes
 Accept: application/x-ndjson
+
+###
+# Stream Fibonacci number
+GET http://localhost:8080/api/fib
+Accept: text/event-stream
+
+###
+# Handling exception
+GET http://localhost:8080/api/exceptionHandling
+
+###
+# Handling exception
+GET http://localhost:8080/api/globalExceptionHandling
