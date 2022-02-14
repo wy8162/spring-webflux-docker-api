@@ -49,3 +49,9 @@ GET http://localhost:8080/api/exceptionHandling
 ###
 # Handling exception
 GET http://localhost:8080/api/globalExceptionHandling
+
+###
+# RequestPredicates
+GET http://localhost:8080/pathPredicate/1
+Accept: application/json
+

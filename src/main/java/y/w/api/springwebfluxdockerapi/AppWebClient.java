@@ -6,6 +6,9 @@ import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 import y.w.api.springwebfluxdockerapi.pojo.ApiResponse;
 
+/**
+ * Used in main() for demonstrating WebClient purpose.
+ */
 @Component
 public class AppWebClient {
     private final WebClient webClient;
