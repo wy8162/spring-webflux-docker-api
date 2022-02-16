@@ -16,6 +16,7 @@
   <description>spring-webflux-docker-api</description>
   <properties>
     <java.version>11</java.version>
+    <springdoc.version>1.6.6</springdoc.version>
   </properties>
   <dependencies>
     <dependency>
@@ -35,7 +36,11 @@
       <artifactId>r2dbc-postgresql</artifactId>
       <scope>runtime</scope>
     </dependency>
-
+    <dependency>
+      <groupId>org.springdoc</groupId>
+      <artifactId>springdoc-openapi-webflux-ui</artifactId>
+      <version>${springdoc.version}</version>
+    </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-devtools</artifactId>

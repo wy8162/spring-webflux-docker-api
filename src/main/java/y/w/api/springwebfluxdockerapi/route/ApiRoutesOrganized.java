@@ -4,8 +4,16 @@ import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.web.reactive.function.server.RequestPredicates.accept;
 import static org.springframework.web.reactive.function.server.RouterFunctions.route;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.enums.ParameterIn;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import java.util.function.BiFunction;
 import lombok.RequiredArgsConstructor;
+import org.springdoc.core.annotations.RouterOperation;
+import org.springdoc.core.annotations.RouterOperations;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
@@ -18,6 +26,7 @@ import y.w.api.springwebfluxdockerapi.handler.FibHandler;
 import y.w.api.springwebfluxdockerapi.handler.MathHandler;
 import y.w.api.springwebfluxdockerapi.handler.ServiceHandler;
 import y.w.api.springwebfluxdockerapi.pojo.CustomException;
+import y.w.api.springwebfluxdockerapi.pojo.CustomerAccountResponse;
 import y.w.api.springwebfluxdockerapi.pojo.ErrorMessage;
 import y.w.api.springwebfluxdockerapi.service.GreetingService;
 
@@ -32,6 +41,21 @@ public class ApiRoutesOrganized {
     private final MathHandler mathHandler;
 
     // This defines the root context
+    // https://springdoc.org/#spring-cloud-function-web-support
+    @RouterOperations({
+        @RouterOperation(path = "/api/relationship", beanClass = CustomerAccountHandler.class, beanMethod = "getAllCustomerRelationships"),
+        @RouterOperation(path = "/api/permission", beanClass = CustomerAccountHandler.class, beanMethod = "getAllPermissions"),
+        @RouterOperation(path = "/api/account", beanClass = CustomerAccountHandler.class, beanMethod = "getAllAccounts"),
+        @RouterOperation(
+            path = "/api/ca/{profileId}",
+            operation = @Operation(operationId = "retrieveAccountsByProfileId", summary = "Find all the accounts for a profile Id", tags = { "MyAccounts" },
+            parameters = { @Parameter(in = ParameterIn.PATH, name = "profileId", description = "Profile Id") },
+            responses = {
+                @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = CustomerAccountResponse.class))),
+                @ApiResponse(responseCode = "400", description = "Invalid Profile ID supplied"),
+                @ApiResponse(responseCode = "404", description = "Accounts not found")
+            }))
+    })
     @Bean
     RouterFunction<ServerResponse> apiRoot() {
         return route()
@@ -89,8 +113,6 @@ public class ApiRoutesOrganized {
     }
 
     private BiFunction<Throwable, ServerRequest, Mono<ServerResponse>> errHandler() {
-        return (ex, request) -> {
-            return ServerResponse.badRequest().bodyValue(new ErrorMessage(ex.getMessage()));
-        };
+        return (ex, request) -> ServerResponse.badRequest().bodyValue(new ErrorMessage(ex.getMessage()));
     }
 }

@@ -12,6 +12,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Data
 @Document
 public class Book {
+    // UUID.randomUUID().toString()
     @Id
     private String id;
     private String name;

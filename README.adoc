@@ -69,3 +69,8 @@ $ docker-compose up
 ```
 here, --rm means automatic cleaning up the container and remove the file system after the conteiner exits.
 
+== OpenAPI 3.0 Swagger
+
+http://localhost:8080/webjars/swagger-ui/index.html
+
+Reference: https://springdoc.org/#spring-cloud-function-web-support
