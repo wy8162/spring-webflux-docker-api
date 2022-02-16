@@ -12,6 +12,7 @@ import org.springframework.web.reactive.function.server.RequestPredicates;
 import org.springframework.web.reactive.function.server.RouterFunction;
 import org.springframework.web.reactive.function.server.ServerResponse;
 import reactor.core.publisher.Mono;
+import y.w.api.springwebfluxdockerapi.filter.HelloHandlerFilter;
 import y.w.api.springwebfluxdockerapi.handler.CustomerAccountHandler;
 import y.w.api.springwebfluxdockerapi.handler.FibHandler;
 import y.w.api.springwebfluxdockerapi.handler.MathHandler;
@@ -40,15 +41,10 @@ public class RouteConfiguration {
                     return ServerResponse.ok()
                         .body(BodyInserters.fromPublisher(gr, ApiResponse.class));
                 })
+            .filter(new HelloHandlerFilter())
             .GET("/hello",
                 accept(APPLICATION_JSON),
                 serviceHandler::helloHandler)
-            .GET("/books/init",
-                accept(APPLICATION_JSON),
-                serviceHandler::initBooks)
-            .GET("/books",
-                accept(APPLICATION_JSON),
-                serviceHandler::getAllBooks)
             // Path pattern: /some/someValue/others?id=someId
             .GET("/some/{pathVariable}/others",
                 accept(APPLICATION_JSON),

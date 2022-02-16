@@ -22,7 +22,7 @@ import y.w.api.springwebfluxdockerapi.pojo.ApiResponse;
  */
 @Slf4j
 @ExtendWith(SpringExtension.class)
-public class RealWebClientApiTests {
+public class WebClientApiGetTests {
     private WebClient webClient;
 
     @BeforeEach

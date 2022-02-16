@@ -42,7 +42,7 @@ public class ApiRoutesOrganized {
      * The following will be based on /api
      * @return
      */
-    RouterFunction<ServerResponse> apiRoutes() {
+    private RouterFunction<ServerResponse> apiRoutes() {
         return route()
             .GET("relationship",
                 accept(APPLICATION_JSON),
@@ -65,6 +65,10 @@ public class ApiRoutesOrganized {
                 fibHandler::getFib
             )
             .GET("/math",
+                accept(APPLICATION_JSON),
+                mathHandler::compute
+            )
+            .POST("/math",
                 accept(APPLICATION_JSON),
                 mathHandler::compute
             )

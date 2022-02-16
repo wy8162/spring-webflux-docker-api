@@ -8,13 +8,17 @@ GET http://localhost:8080/hello
 GET http://localhost:8080/hello/Jack
 
 ###
+# Using HelloHandlerFilter to return FORBIDDEN
+GET http://localhost:8080/hello/wy
+
+###
 GET http://localhost:8080/books/init
 
 ###
 GET http://localhost:8080/books
 
 ###
-GET http://localhost:8080/some/pathvariable1234/others?id=wy8162
+GET http://localhost:8080/some/pathVariable/others?id=queryVar
 
 ###
 GET http://localhost:8080/api/relationship

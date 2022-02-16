@@ -6,6 +6,7 @@ I took the following courses:
 3. "Reactive Spring Boot, 3d Edition" by Josh Long.
 4. "DevOps for Absolute Beginners: Azure DevOps, Docker, Kubernetes, Jenkins, Terraform, Ansible - AWS, Azure & Google Cloud" by in28Minutes.
 5. "GCP ACE - Google Cloud Associate Cloud Engineer certification. Begin your Google Cloud Platform - GCP journey!" by in28Minutes.
+6. "Build highly scalable and resilient Microservices with Spring WebFlux / Reactive Stack" by Vinoth Selvaraj.
 
 == Build Docker Image with Dockerfile
 

@@ -1,4 +1,4 @@
-package y.w.api.springwebfluxdockerapi.model;
+package y.w.api.springwebfluxdockerapi.model.bookstore;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,8 +10,11 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @NoArgsConstructor
 @Data
 @Document
-public class Book {
+public class Item {
     @Id
     private String id;
     private String name;
+    private String description;
+    private double price;
+
 }

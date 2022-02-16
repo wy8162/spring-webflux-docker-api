@@ -15,7 +15,7 @@ public class MathHandler {
     private final MathService service;
 
     public Mono<ServerResponse> compute(ServerRequest request) {
-        Mono<MathDTO> mathDTOMono = service.compute(request.bodyToMono(MathDTO.class));
+        Mono<MathDTO> mathDTOMono = service.compute(request, request.bodyToMono(MathDTO.class));
 
         return ServerResponse
             .ok()
