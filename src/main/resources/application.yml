@@ -48,5 +48,9 @@ server:
 #    trust-store-type:
 #    trust-store-password:
 
+springdoc:
+  version: '@springdoc.version@'
+  swagger-ui:
+    use-root-path: true
 ---
 # Profile "prod"

@@ -71,6 +71,19 @@ here, --rm means automatic cleaning up the container and remove the file system 
 
 == OpenAPI 3.0 Swagger
 
-http://localhost:8080/webjars/swagger-ui/index.html
+Reference: https://www.baeldung.com/spring-rest-openapi-documentation
 
-Reference: https://springdoc.org/#spring-cloud-function-web-support
+http://localhost:8080/swagger-ui.html[SWAGGER UI]
+
+http://localhost:8080/v3/api-docs/[SWAGGER API DOC]
+
+=== Method 1
+
+1. Add the Springdoc dependency.
+2. Configure Springdoc Swagger 3.0 in application.yml.
+3. Optional: create bean OpenAPI as done in OpenApiConfig.
+4. Use org.springdoc.webflux.core.fn.SpringdocRouteBuilder.route to configure RouterFounction endpoints. See example RouteOpenAPISpringdoc.
+
+=== Method 2
+Adding OpenAPI anonations to the functional endpoints directly. See branch openapi_explict_annotation.
+
