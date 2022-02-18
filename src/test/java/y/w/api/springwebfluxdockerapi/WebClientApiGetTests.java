@@ -14,7 +14,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 import reactor.netty.http.client.HttpClient;
 import reactor.test.StepVerifier;
-import y.w.api.springwebfluxdockerapi.pojo.ApiResponse;
+import y.w.api.springwebfluxdockerapi.pojo.WebFluxApiResponse;
 
 /**
  * These tests use a real WebClient. So the application needs to be started
@@ -38,12 +38,12 @@ public class WebClientApiGetTests {
 
     @Test
     void testHello() {
-        Mono<ApiResponse> responseMono = webClient
+        Mono<WebFluxApiResponse> responseMono = webClient
             .get()
             .uri("/hello")
             .accept(MediaType.APPLICATION_JSON)
             .retrieve()
-            .bodyToMono(ApiResponse.class);
+            .bodyToMono(WebFluxApiResponse.class);
 
         responseMono.as(StepVerifier::create)
             .assertNext(actual -> {
@@ -57,7 +57,7 @@ public class WebClientApiGetTests {
             .uri("/hello/{name}", "jack")
             .accept(MediaType.APPLICATION_JSON)
             .retrieve()
-            .bodyToMono(ApiResponse.class);
+            .bodyToMono(WebFluxApiResponse.class);
 
         responseMono.as(StepVerifier::create)
             .assertNext(actual -> {
@@ -69,15 +69,15 @@ public class WebClientApiGetTests {
 
     @Test
     void testHelloCheckingStatus() {
-        Mono<ApiResponse> responseMono = webClient
+        Mono<WebFluxApiResponse> responseMono = webClient
             .get()
             .uri("/hello-error")
             .accept(MediaType.APPLICATION_JSON)
             .exchangeToMono(response -> {
                 if (response.statusCode().equals(HttpStatus.OK))
-                    return response.bodyToMono(ApiResponse.class);
+                    return response.bodyToMono(WebFluxApiResponse.class);
                 else if (response.statusCode().is4xxClientError()){
-                    return Mono.just(new ApiResponse(response.statusCode(), "Error response"));
+                    return Mono.just(new WebFluxApiResponse(response.statusCode(), "Error response"));
                 } else {
                     return response.createException()
                         .flatMap(Mono::error);

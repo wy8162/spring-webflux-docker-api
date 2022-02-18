@@ -17,6 +17,7 @@ import org.springdoc.core.annotations.RouterOperations;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.reactive.function.server.RouterFunction;
 import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
@@ -48,8 +49,11 @@ public class ApiRoutesOrganized {
         @RouterOperation(path = "/api/account", beanClass = CustomerAccountHandler.class, beanMethod = "getAllAccounts"),
         @RouterOperation(
             path = "/api/ca/{profileId}",
-            operation = @Operation(operationId = "retrieveAccountsByProfileId", summary = "Find all the accounts for a profile Id", tags = { "MyAccounts" },
-            parameters = { @Parameter(in = ParameterIn.PATH, name = "profileId", description = "Profile Id") },
+            method = { RequestMethod.GET },
+            operation = @Operation(operationId = "retrieveAccountsByProfileId", description = "Find all the accounts for a profile Id", tags = { "MyAccounts" },
+            parameters = {
+                @Parameter(in = ParameterIn.PATH, name = "profileId", description = "Profile Id")
+            },
             responses = {
                 @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = CustomerAccountResponse.class))),
                 @ApiResponse(responseCode = "400", description = "Invalid Profile ID supplied"),

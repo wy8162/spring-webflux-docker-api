@@ -9,8 +9,8 @@ import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
 import reactor.core.publisher.Mono;
 import y.w.api.springwebfluxdockerapi.SampleDataInitializer;
-import y.w.api.springwebfluxdockerapi.pojo.ApiRequest;
-import y.w.api.springwebfluxdockerapi.pojo.ApiResponse;
+import y.w.api.springwebfluxdockerapi.pojo.WebFluxApiRequest;
+import y.w.api.springwebfluxdockerapi.pojo.WebFluxApiResponse;
 import y.w.api.springwebfluxdockerapi.repository.BookMongoRepository;
 import y.w.api.springwebfluxdockerapi.service.GreetingService;
 
@@ -23,13 +23,13 @@ public class ServiceHandler {
     private final SampleDataInitializer sampleDataInitializer;
 
     public Mono<ServerResponse> helloHandler(ServerRequest request) {
-        Mono<ApiResponse> gr = service.hello(new ApiRequest("World"));
+        Mono<WebFluxApiResponse> gr = service.hello(new WebFluxApiRequest("World"));
 
         return ServerResponse
             .ok()
             .contentType(MediaType.APPLICATION_JSON)
             .body(
-                BodyInserters.fromPublisher(gr, ApiResponse.class)
+                BodyInserters.fromPublisher(gr, WebFluxApiResponse.class)
             );
     }
 

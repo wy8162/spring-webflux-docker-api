@@ -14,7 +14,6 @@ import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.util.UriComponentsBuilder;
 import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
-import y.w.api.springwebfluxdockerapi.pojo.ApiResponse;
 
 /**
  * Exchange = retrieve + additional information like http status.

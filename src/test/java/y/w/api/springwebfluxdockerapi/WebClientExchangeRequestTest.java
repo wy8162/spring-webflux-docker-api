@@ -12,7 +12,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
-import y.w.api.springwebfluxdockerapi.pojo.ApiResponse;
+import y.w.api.springwebfluxdockerapi.pojo.WebFluxApiResponse;
 
 /**
  * Exchange = retrieve + additional information like http status.
@@ -33,15 +33,15 @@ public class WebClientExchangeRequestTest {
 
     @Test
     void testHelloCheckingStatus() {
-        Mono<ApiResponse> responseMono = webClient
+        Mono<WebFluxApiResponse> responseMono = webClient
             .get()
             .uri("/hello-error")
             .accept(MediaType.APPLICATION_JSON)
             .exchangeToMono(response -> {
                 if (response.statusCode().equals(HttpStatus.OK))
-                    return response.bodyToMono(ApiResponse.class);
+                    return response.bodyToMono(WebFluxApiResponse.class);
                 else if (response.statusCode().is4xxClientError()){
-                    return Mono.just(new ApiResponse(response.statusCode(), "Error response"));
+                    return Mono.just(new WebFluxApiResponse(response.statusCode(), "Error response"));
                 } else {
                     return response.createException()
                         .flatMap(Mono::error);
