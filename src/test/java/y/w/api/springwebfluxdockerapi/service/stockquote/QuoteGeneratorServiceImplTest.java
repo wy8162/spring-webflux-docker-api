@@ -7,6 +7,9 @@ import reactor.core.publisher.Flux;
 import java.time.Duration;
 import java.util.concurrent.CountDownLatch;
 import java.util.function.Consumer;
+import y.w.api.springwebfluxdockerapi.quote.Quote;
+import y.w.api.springwebfluxdockerapi.quote.QuoteGeneratorService;
+import y.w.api.springwebfluxdockerapi.quote.QuoteGeneratorServiceImpl;
 
 class QuoteGeneratorServiceImplTest {
 

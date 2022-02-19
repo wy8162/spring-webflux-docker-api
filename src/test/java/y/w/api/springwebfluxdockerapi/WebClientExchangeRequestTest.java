@@ -1,6 +1,7 @@
 package y.w.api.springwebfluxdockerapi;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static y.w.api.springwebfluxdockerapi.HealthChecker.healthCheck;
 
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
@@ -33,9 +34,11 @@ public class WebClientExchangeRequestTest {
 
     @Test
     void testHelloCheckingStatus() {
+        if (!healthCheck()) return;
+
         Mono<WebFluxApiResponse> responseMono = webClient
             .get()
-            .uri("/hello-error")
+            .uri("/api/hello-error")
             .accept(MediaType.APPLICATION_JSON)
             .exchangeToMono(response -> {
                 if (response.statusCode().equals(HttpStatus.OK))

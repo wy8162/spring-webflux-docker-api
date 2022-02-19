@@ -21,7 +21,7 @@ class SpringWebfluxDockerApiApplicationTests {
     @Test
     void testHello() {
         webTestClient
-            .get().uri("/hello")
+            .get().uri("/api/hello")
             .accept(MediaType.APPLICATION_JSON)
             .exchange()
             .expectStatus().isOk()
@@ -30,10 +30,10 @@ class SpringWebfluxDockerApiApplicationTests {
             });
 
         webTestClient
-            .get().uri("/")
+            .get().uri("/api")
             .accept(MediaType.APPLICATION_JSON)
             .exchange()
-            .expectStatus().isNotFound();
+            .expectStatus().isBadRequest();
     }
 
 }

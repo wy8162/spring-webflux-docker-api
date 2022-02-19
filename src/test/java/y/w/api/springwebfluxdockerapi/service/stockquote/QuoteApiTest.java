@@ -7,6 +7,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
 import java.util.concurrent.CountDownLatch;
+import y.w.api.springwebfluxdockerapi.quote.Quote;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

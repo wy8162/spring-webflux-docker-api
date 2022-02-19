@@ -1,6 +1,7 @@
 package y.w.api.springwebfluxdockerapi;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static y.w.api.springwebfluxdockerapi.HealthChecker.healthCheck;
 
 import java.net.URI;
 import lombok.extern.slf4j.Slf4j;
@@ -34,6 +35,8 @@ public class WebClientPathVariableQueryParameterTest {
 
     @Test
     void testHelloCheckingStatus() {
+        if (!healthCheck()) return;
+
 // Method 1;
 //        URI uri = UriComponentsBuilder
 //            .fromUriString("http://localhost:8080/some/{pv}/others?id={qv}")
@@ -50,7 +53,7 @@ public class WebClientPathVariableQueryParameterTest {
             .scheme("http")
             .host("localhost")
             .port(8080)
-            .path("/some/{pv}/others")
+            .path("/api/some/{pv}/others")
             .query("id={qv}")
             .build("pathVariable", "queryVar");
 

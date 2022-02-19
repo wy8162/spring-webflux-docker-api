@@ -1,6 +1,7 @@
 package y.w.api.springwebfluxdockerapi;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static y.w.api.springwebfluxdockerapi.HealthChecker.healthCheck;
 
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
@@ -10,7 +11,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
-import y.w.api.springwebfluxdockerapi.model.MathDTO;
+import y.w.api.springwebfluxdockerapi.general.MathDTO;
 
 /**
  * Run the application to run the test.
@@ -31,6 +32,8 @@ public class WebClientApiPostHeaderTests {
 
     @Test
     void testMathCompute() {
+        if (!healthCheck()) return;
+
         MathDTO mathDTO = MathDTO.builder().firstNumber(100).secondNumber(10).operator("+").build();
 
         Mono<MathDTO> response = this.webClient
@@ -51,6 +54,8 @@ public class WebClientApiPostHeaderTests {
 
     @Test
     void testMathComputeIgnoreDividedByZero() {
+        if (!healthCheck()) return;
+
         MathDTO mathDTO = MathDTO.builder().firstNumber(100).secondNumber(0).operator("/").build();
 
         Mono<MathDTO> response = this.webClient

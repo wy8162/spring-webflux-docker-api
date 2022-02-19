@@ -10,7 +10,8 @@ import org.springframework.r2dbc.core.DatabaseClient;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
-import y.w.api.springwebfluxdockerapi.model.hr.Employee;
+import y.w.api.springwebfluxdockerapi.hr.EmployeeR2dbcRepository;
+import y.w.api.springwebfluxdockerapi.hr.model.Employee;
 
 /**
  * Test R2DBC Repository.

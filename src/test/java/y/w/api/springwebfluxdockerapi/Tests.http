@@ -1,15 +1,18 @@
 ###
-GET http://localhost:8080/
+GET http://localhost:8080/api/health
 
 ###
-GET http://localhost:8080/hello
+GET http://localhost:8080/api
 
 ###
-GET http://localhost:8080/hello/Jack
+GET http://localhost:8080/api/hello
+
+###
+GET http://localhost:8080/api/hello/Jack
 
 ###
 # Using HelloHandlerFilter to return FORBIDDEN
-GET http://localhost:8080/hello/wy
+GET http://localhost:8080/api/hello/wy
 
 ###
 GET http://localhost:8080/books/init
@@ -21,19 +24,19 @@ GET http://localhost:8080/books
 GET http://localhost:8080/some/pathVariable/others?id=queryVar
 
 ###
-GET http://localhost:8080/api/relationship
+GET http://localhost:8080/ca/relationship
 
 ###
-GET http://localhost:8080/api/permission
+GET http://localhost:8080/ca/permission
 
 ###
-GET http://localhost:8080/api/account
+GET http://localhost:8080/ca/account
 Accept: application/json
 
 ###
 # /api/{profileId}
 # profileId = 1,2,3,...
-GET http://localhost:8080/api/ca/3
+GET http://localhost:8080/ca/ca/3
 Accept: application/json
 
 ###
@@ -56,6 +59,6 @@ GET http://localhost:8080/api/globalExceptionHandling
 
 ###
 # RequestPredicates
-GET http://localhost:8080/pathPredicate/1
+GET http://localhost:8080/api/pathPredicate/1
 Accept: application/json
 

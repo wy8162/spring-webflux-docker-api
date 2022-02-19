@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import reactor.test.StepVerifier;
+import y.w.api.springwebfluxdockerapi.book.BookMongoRepository;
 
 /**
  * Test Mongodb repository.

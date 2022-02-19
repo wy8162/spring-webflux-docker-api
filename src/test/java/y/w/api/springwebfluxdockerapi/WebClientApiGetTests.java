@@ -1,7 +1,10 @@
 package y.w.api.springwebfluxdockerapi;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static y.w.api.springwebfluxdockerapi.HealthChecker.healthCheck;
 
+import java.net.HttpURLConnection;
+import java.net.URL;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -35,12 +38,26 @@ public class WebClientApiGetTests {
             .build();
     }
 
+    @Test
+    public void testHttpCaller() {
+        try {
+            URL url = new URL("http://localhost:8080/api/health");
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            int status = conn.getResponseCode();
+        } catch (Exception e) {
+
+        }
+
+        //return status == HttpURLConnection.HTTP_OK;
+    }
 
     @Test
     void testHello() {
+        if (!healthCheck()) return;
+
         Mono<WebFluxApiResponse> responseMono = webClient
             .get()
-            .uri("/hello")
+            .uri("/api/hello")
             .accept(MediaType.APPLICATION_JSON)
             .retrieve()
             .bodyToMono(WebFluxApiResponse.class);
@@ -54,7 +71,7 @@ public class WebClientApiGetTests {
 
         responseMono = webClient
             .get()
-            .uri("/hello/{name}", "jack")
+            .uri("/api/hello/{name}", "jack")
             .accept(MediaType.APPLICATION_JSON)
             .retrieve()
             .bodyToMono(WebFluxApiResponse.class);
@@ -69,9 +86,11 @@ public class WebClientApiGetTests {
 
     @Test
     void testHelloCheckingStatus() {
+        if (!healthCheck()) return;
+
         Mono<WebFluxApiResponse> responseMono = webClient
             .get()
-            .uri("/hello-error")
+            .uri("/api/hello-error")
             .accept(MediaType.APPLICATION_JSON)
             .exchangeToMono(response -> {
                 if (response.statusCode().equals(HttpStatus.OK))
